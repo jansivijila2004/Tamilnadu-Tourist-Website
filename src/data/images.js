@@ -1,0 +1,166 @@
+// Central Tamil Nadu image registry.
+// Each key is used exactly once on the whole site. `f` is a Wikimedia Commons file name,
+// `q` is a Commons search query used automatically if the file name cannot be loaded.
+// Run `npm run verify-images` (needs internet) to check every URL and detect duplicates.
+const E = (f, q, alt, local = null) => ({ f, q, alt, local });
+
+export const IMAGES = {
+  // ---- Hero slider (6) ----
+  heroMeenakshi: E("Madurai Meenakshi Amman Temple.jpg", "Meenakshi Amman Temple Madurai gopuram", "Gopuram of Meenakshi Amman Temple, Madurai"),
+  heroOoty: E(null, "Ooty Nilgiris tea estate landscape", "Misty hills and tea estates of Ooty in the Nilgiris", "/images/tamil-nadu/ooty-tea-hills.webp"),
+  heroKanyakumari: E(null, "Kanyakumari sunrise Vivekananda Rock Memorial Tamil Nadu", "Sunrise over the sea at Kanyakumari"),
+  heroThanjavur: E("Thanjavur Brihadeeswarar Temple.jpg", "Brihadisvara Temple Thanjavur vimana", "Brihadeeswarar Temple, Thanjavur"),
+  heroKodai: E("Kodaikanal Lake.jpg", "Kodaikanal Lake boats", "Kodaikanal Lake surrounded by hills"),
+  heroHogenakkal: E("Hogenakkal Falls.jpg", "Hogenakkal Falls Cauvery coracle", "Hogenakkal Falls on the Cauvery river"),
+
+  // ---- Madurai (8) ----
+  madMeenakshi: E("Meenakshi Amman Temple Madurai.jpg", "Meenakshi Amman Temple Madurai Potramarai tank", "Meenakshi Amman Temple complex, Madurai"),
+  madMahal: E("Thirumalai Nayakkar Mahal.jpg", "Thirumalai Nayak Palace Madurai pillars", "Pillared courtyard of Thirumalai Nayakkar Mahal, Madurai"),
+  madGandhi: E("Gandhi Memorial Museum Madurai.jpg", "Gandhi Memorial Museum Madurai", "Gandhi Memorial Museum in Madurai"),
+  madAlagar: E("Alagar Koil Madurai.jpg", "Alagar Kovil Madurai Azhagar temple", "Alagar Kovil temple near Madurai"),
+  madTeppakulam: E("Vandiyur Mariamman Teppakulam.jpg", "Vandiyur Mariamman Teppakulam Madurai", "Vandiyur Mariamman Teppakulam tank, Madurai"),
+  madKoodal: E("Koodal Azhagar Temple.jpg", "Koodal Azhagar Perumal Temple Madurai", "Koodal Azhagar Temple, Madurai"),
+  madMarket: E("Madurai Pudhu Mandapam market.jpg", "Madurai street market flowers", "Street market in Madurai"),
+  madJigarthanda: E("Jigarthanda.jpg", "Jigarthanda Madurai drink", "Jigarthanda, the cold drink of Madurai"),
+
+  // ---- Destinations ----
+  dOoty: E(null, "Ooty Lake Nilgiris", "Misty tea estates in the Nilgiris", "/images/tamil-nadu/ooty-tea-hills.webp"),
+  dKodai: E("Kodaikanal Coakers Walk.jpg", "Kodaikanal Coakers Walk Pillar Rocks", "Kodaikanal hill station view"),
+  dMadurai: E("Madurai Meenakshi temple at night.jpg", "Madurai city Meenakshi Temple evening", "Madurai city skyline with temple towers"),
+  dThanjavur: E("Thanjavur Maratha Palace.jpg", "Thanjavur Maratha Palace Durbar Hall", "Thanjavur Maratha Palace"),
+  dMahabalipuram: E("Shore Temple Mahabalipuram.jpg", "Shore Temple Mahabalipuram", "Shore Temple at Mahabalipuram"),
+  dRameswaram: E("Ramanathaswamy Temple corridor.jpg", "Ramanathaswamy Temple Rameswaram corridor", "Corridor of Ramanathaswamy Temple, Rameswaram"),
+  dKanyakumari: E(null, "Thiruvalluvar Statue Vivekananda Rock Memorial Kanyakumari Tamil Nadu", "Thiruvalluvar Statue at Kanyakumari"),
+  dYercaud: E(null, "Yercaud Lake Shevaroy hills", "Yercaud Lake in the Shevaroy Hills", "/images/tamil-nadu/yercaud-lake.webp"),
+  dValparai: E("Valparai tea estate.jpg", "Valparai tea estate Anamalai hills", "Tea estates around Valparai"),
+  dHogenakkal: E("Hogenakkal coracle ride.jpg", "Hogenakkal coracle ride", "Coracle ride at Hogenakkal"),
+  dCourtallam: E("Courtallam Main Falls.jpg", "Courtallam Main Falls Kutralam", "Main Falls at Courtallam"),
+  dPichavaram: E("Pichavaram mangrove forest.jpg", "Pichavaram mangrove forest", "Pichavaram mangrove forest backwaters"),
+  dChidambaram: E("Chidambaram Nataraja Temple gopuram.jpg", "Chidambaram Nataraja Temple gopuram", "Nataraja Temple, Chidambaram"),
+  dKanchipuram: E("Kailasanathar Temple Kanchipuram.jpg", "Kailasanathar Temple Kanchipuram", "Kailasanathar Temple, Kanchipuram"),
+  dGangaikonda: E("Gangaikonda Cholapuram temple.jpg", "Gangaikonda Cholapuram temple", "Gangaikonda Cholapuram temple"),
+  dTiruchi: E("Rockfort Tiruchirappalli.jpg", "Rock Fort Tiruchirappalli", "Rock Fort Temple, Tiruchirappalli"),
+  dMudumalai: E("Mudumalai National Park.jpg", "Mudumalai National Park elephants", "Mudumalai National Park"),
+  dDhanushkodi: E("Dhanushkodi ruins.jpg", "Dhanushkodi ruins", "Dhanushkodi ghost town ruins"),
+  dMarina: E("Marina Beach Chennai.jpg", "Marina Beach Chennai", "Marina Beach, Chennai"),
+  dSrirangam: E("Srirangam Ranganathaswamy temple.jpg", "Srirangam Ranganathaswamy Temple gopuram", "Ranganathaswamy Temple, Srirangam"),
+
+  // ---- Dances (8) ----
+  danBharata: E(null, "Bharatanatyam dancer performance", "Traditional Tamil dance performance", "/images/tamil-nadu/tamil-folk-dance.webp"),
+  danKaraga: E(null, "Karagattam performers Tamil Nadu", "Karagattam performers balancing decorated pots", "/images/tamil-nadu/karagattam-performers.webp"),
+  danMayil: E(null, "Mayilattam peacock dance Tamil Nadu", "Mayilattam performer in a traditional peacock costume", "/images/tamil-nadu/mayilattam-peacock-dancers.jpg"),
+  danOyil: E(null, "Oyilattam folk dance performers Tamil Nadu", "Oyilattam folk dancers performing together", "/images/tamil-nadu/oyilattam-performers.jpg"),
+  danTheru: E(null, "Therukoothu Tamil street theatre performers", "Therukoothu street-theatre performers in traditional costume and makeup", "/images/tamil-nadu/therukoothu-street-theatre.jpg"),
+  danPoikkal: E(null, "Poikkal Kuthirai dummy horse dance", "Poikkal Kuthirai dancers wearing dummy horse costumes", "/images/tamil-nadu/poikkal-kuthirai-dancers.webp"),
+  danKavadi: E(null, "Kavadi Attam Murugan devotees", "Kavadi Attam devotee carrying an ornate Kavadi", "/images/tamil-nadu/kavadi-attam-performers.jpg"),
+  danWorldRecord: E(null, "Tamil folk dance world record award ceremony", "Tamil performers at a world-record award ceremony for Oyilattam", "/images/tamil-nadu/tamil-folk-world-record-award.jpg"),
+  danKummi: E("Kummi dance Tamil Nadu.jpg", "Kummi folk dance Tamil Nadu women circle", "Women performing Kummi in a circle"),
+
+  // ---- Food & culture ----
+  fIdli: E("Idli Sambar.jpg", "Idli sambar chutney", "Idli served with sambar and chutney"),
+  fDosa: E("Masala dosa.jpg", "Masala dosa Tamil Nadu", "Crisp dosa with chutneys"),
+  fPongal: E("Ven Pongal.jpg", "Ven Pongal dish", "Ven Pongal dish served with sambar"),
+  fChettinad: E("Chettinad chicken.jpg", "Chettinad cuisine curry", "Chettinad cuisine"),
+  fParotta: E("Parotta Salna Tamil Nadu.jpg", "Parotta salna", "Parotta with salna"),
+  fCoffee: E(null, "South Indian filter coffee davara tumbler", "Tamil filter coffee in a tumbler and davara", "/images/tamil-nadu/filter-coffee.webp"),
+  fBanana: E("Banana leaf meal.jpg", "South Indian banana leaf meal sadhya", "Traditional meal served on a banana leaf"),
+  fPongalFest: E("Pongal festival pot.jpg", "Pongal festival boiling pot Tamil Nadu", "Pongal being cooked in a clay pot"),
+  fJallikattu: E("Jallikattu Alanganallur.jpg", "Jallikattu Alanganallur", "Jallikattu bull-taming event"),
+  fTanjoreArt: E("Tanjore painting.jpg", "Tanjore painting", "Tanjore painting with gold leaf"),
+  fBronze: E("Nataraja Chola bronze.jpg", "Chola bronze Nataraja", "Chola bronze sculpture"),
+  fKolam: E(null, "Kolam Tamil Nadu doorstep", "Kolam pattern at a doorstep in Tamil Nadu", "/images/tamil-nadu/traditional-kolam.webp"),
+  fKanchi: E("Kanchipuram silk saree.jpg", "Kanchipuram silk saree", "Kanchipuram silk weaving"),
+
+  // ---- About ----
+  aGreatLiving: E("Great Living Chola Temples Darasuram.jpg", "Airavatesvara Temple Darasuram", "Airavatesvara Temple, Darasuram"),
+  aWesternGhats: E("Nilgiri hills Western Ghats.jpg", "Nilgiri hills Western Ghats Tamil Nadu", "Western Ghats in Tamil Nadu"),
+  aCauvery: E(null, "Cauvery delta paddy fields Thanjavur", "Paddy fields of the Cauvery delta", "/images/tamil-nadu/cauvery-paddy.webp"),
+  aTamilScript: E("Tamil inscription temple wall.jpg", "Tamil inscription temple wall", "Tamil inscriptions on a temple wall"),
+  aSculpture: E("Mahabalipuram Arjuna's Penance.jpg", "Arjuna's Penance Mahabalipuram", "Arjuna's Penance relief at Mahabalipuram"),
+  aFestival: E("Madurai Chithirai festival.jpg", "Chithirai festival Madurai", "Chithirai festival in Madurai"),
+  aTourism: E("Mamallapuram Five Rathas.jpg", "Pancha Rathas Mahabalipuram", "Pancha Rathas at Mahabalipuram"),
+
+  // ---- Home extras ----
+  hWelcome: E("Kapaleeshwarar Temple Chennai.jpg", "Kapaleeshwarar Temple Mylapore Chennai", "Kapaleeshwarar Temple, Chennai"),
+  hCTA: E("Kolli Hills Tamil Nadu.jpg", "Kolli Hills Namakkal Tamil Nadu", "Kolli Hills in Namakkal, Tamil Nadu"),
+  hKodai2: E("Kodaikanal Pillar Rocks.jpg", "Pillar Rocks Kodaikanal", "Pillar Rocks at Kodaikanal"),
+  hAvalanche: E("Doddabetta Nilgiris view.jpg", "Nilgiris Doddabetta view", "Doddabetta view in the Nilgiris"),
+  hTrain: E(null, "Vivekananda Rock Memorial Kanyakumari Tamil Nadu ferry sea", "Vivekananda Rock Memorial at Kanyakumari"),
+  hMusic: E("Nadaswaram players.jpg", "Nadaswaram Thavil players Tamil Nadu", "Nadaswaram and thavil musicians"),
+
+  // ---- Travel guide ----
+  tChennaiAir: E("Chennai International Airport.jpg", "Chennai International Airport terminal", "Chennai International Airport"),
+  tTrain: E("Chennai Central railway station.jpg", "Chennai Central railway station", "Chennai Central railway station"),
+  tBus: E(null, "Tamil Nadu bus SETC", "Tamil Nadu state transport bus on a scenic hill road", "/images/tamil-nadu/hill-road-bus.webp"),
+  tRoute: E("Pamban Bridge Rameswaram.jpg", "Pamban Bridge Rameswaram", "Pamban Bridge connecting Rameswaram"),
+  tStay: E("Chettinad mansion Karaikudi.jpg", "Chettinad mansion Karaikudi", "Chettinad mansion in Karaikudi"),
+  tSafety: E("Tamil Nadu temple visitors.jpg", "Tamil Nadu temple devotees visitors", "Visitors at a Tamil Nadu temple"),
+  tItin: E("Thanjavur Big Temple Nandi.jpg", "Nandi Brihadisvara Temple Thanjavur", "Nandi at Brihadeeswarar Temple"),
+  tSeason: E("Tamil Nadu monsoon Western Ghats.jpg", "Tamil Nadu monsoon green hills", "Monsoon green hills of Tamil Nadu"),
+  tHero: E("Mahabalipuram beach.jpg", "Mahabalipuram beach Bay of Bengal", "Beach at Mahabalipuram"),
+
+  // ---- Heritage & Nature extras ----
+  hnHero: E("Chola temple Gangaikondacholapuram.jpg", "Great Living Chola Temples", "Great Living Chola Temple"),
+  hnCarving: E("Meenakshi temple sculptures.jpg", "Tamil temple pillar carvings Madurai", "Carved pillars in a Tamil temple"),
+  hnStone: E("Kanchipuram Ekambareswarar.jpg", "Ekambareswarar Temple Kanchipuram", "Ekambareswarar Temple, Kanchipuram"),
+
+  // ---- Contact / heroes ----
+  cHero: E("Nilgiri Tea gardens.jpg", "Tea gardens Nilgiris Tamil Nadu", "Tea gardens in the Nilgiris"),
+  cSupport: E(null, "Agni Theertham Rameswaram", "Agni Theertham beach at Rameswaram", "/images/tamil-nadu/agni-theertham.webp"),
+  aboutHero: E("Gopuram Srirangam.jpg", "Raja Gopuram Srirangam", "Raja Gopuram of Srirangam"),
+  destHero: E("Aliyar Dam Pollachi.jpg", "Aliyar dam Pollachi Tamil Nadu", "Aliyar Dam near Pollachi, Tamil Nadu"),
+  foodHero: E("Tamil Nadu meals.jpg", "Tamil meals banana leaf", "Traditional Tamil meal"),
+
+  // ---- Dedicated page hero slider images (unique to their page) ----
+  aboutHero2: E(null, "Tamil Nadu Sangam age Keeladi archaeological museum exhibits", "Archaeological heritage exhibits at Keeladi, Tamil Nadu", "/images/tamil-nadu/keeladi-archaeology.webp"),
+  aboutHero3: E(null, "Tamil Nadu traditional bronze sculpture artisan workshop", "Traditional bronze craft in Tamil Nadu", "/images/tamil-nadu/bronze-craft.webp"),
+  destHero2: E(null, "Rameswaram Pamban sea bridge aerial Tamil Nadu", "Pamban sea bridge near Rameswaram", "/images/tamil-nadu/pamban-bridge.webp"),
+  destHero3: E(null, "Yercaud lake Shevaroy hills Tamil Nadu landscape", "Yercaud Lake and surrounding hills", "/images/tamil-nadu/yercaud-lake.webp"),
+  hnHero2: E(null, "Bharatanatyam classical dancer stage performance Tamil Nadu", "Traditional Tamil dance performance", "/images/tamil-nadu/tamil-folk-dance.webp"),
+  hnHero3: E(null, "Pichavaram mangrove forest boat Tamil Nadu", "Mangrove waterways at Pichavaram"),
+  foodHero2: E(null, "Tamil Nadu traditional idli dosa breakfast banana leaf", "Traditional Tamil Nadu breakfast"),
+  foodHero3: E(null, "Madurai Jigarthanda traditional drink glass", "Jigarthanda drink from Madurai", "/images/tamil-nadu/madurai-jigarthanda.webp"),
+  cHero2: E(null, "Tamil Nadu coastal fishing village boats sunrise", "Fishing boats along the Tamil Nadu coast"),
+  cHero3: E(null, "Tamil Nadu Nilgiri mountain railway train forest", "Nilgiri Mountain Railway in the hills"),
+  tHero2: E(null, "Chennai Central railway station Tamil Nadu exterior", "Chennai Central railway station"),
+  tHero3: E(null, "Moyar to Ooty bus Kalhatty Nilgiris Tamil Nadu", "Moyar to Ooty bus rounding a bend on a hill road in the Nilgiris, Tamil Nadu", "/images/tamil-nadu/nilgiri-hill-road-bus.jpg"),
+
+  // ---- Added: resolved by search query on Wikimedia Commons ----
+  aCta: E(null, "Pichavaram Mangrove Forest Tamil Nadu", "Mangrove channels at Pichavaram"),
+  cCta: E(null, "Meenakshi Amman Temple Madurai east gopuram", "East gopuram of Meenakshi Amman Temple"),
+  ctaDest: E(null, "Kodaikanal Berijam Lake", "Berijam Lake near Kodaikanal"),
+  ctaDetail: E(null, "Courtallam waterfalls Tenkasi", "Waterfalls near Courtallam"),
+  ctaFood: E(null, "South Indian thali Tamil Nadu", "Tamil Nadu thali meal"),
+  ctaHN: E(null, "Nilgiri hills sunrise Tamil Nadu", "Sunrise over the Nilgiri hills"),
+  dOotyN: E(null, "Ooty Botanical Garden", "Government Botanical Garden, Ooty"),
+  dKodaiN: E(null, "Kodaikanal Bryant Park", "Bryant Park, Kodaikanal"),
+  dHogeN: E(null, "Hogenakkal Falls Dharmapuri", "Hogenakkal Falls cascades"),
+  dCourtN: E(null, "Courtallam Five Falls", "Five Falls at Courtallam"),
+  dKanyaN: E(null, "Kanyakumari sunset Gandhi Mandapam", "Sunset at Kanyakumari"),
+  dPichN: E(null, "Pichavaram boat Cuddalore", "Boat in Pichavaram mangroves"),
+  dYerN: E(null, "Yercaud Lady's Seat Shevaroy", "Viewpoint in Yercaud"),
+  dValN: E(null, "Valparai Sholayar Dam", "Sholayar Dam near Valparai"),
+  fJigar: E(null, "Jigarthanda glass Madurai", "Jigarthanda served in a glass", "/images/tamil-nadu/madurai-jigarthanda.webp"),
+  hCta2: E(null, "Western Ghats Tamil Nadu countryside sunrise", "Countryside near the Western Ghats in Tamil Nadu"),
+  haGingee: E(null, "Gingee Fort Villupuram", "Gingee Fort in Villupuram"),
+  haSanthome: E(null, "San Thome Basilica Chennai", "San Thome Basilica, Chennai"),
+  haVellore: E(null, "Vellore Fort moat", "Vellore Fort"),
+  heFestival: E(null, "Tamil Nadu temple chariot festival", "Temple chariot festival in Tamil Nadu"),
+  heTrain: E(null, "Nilgiri Mountain Railway Coonoor", "Nilgiri Mountain Railway near Coonoor"),
+  heTrek: E(null, "Palani Hills forest trail Kodaikanal", "Hikers walking through the pine forest in the Palani Hills near Kodaikanal", "/images/tamil-nadu/palani-hills-forest-trail.jpg"),
+  hfKothu: E(null, "Kothu parotta", "Kothu parotta being prepared"),
+  hfPaniyaram: E(null, "Kuzhi paniyaram", "Kuzhi paniyaram with chutney"),
+  hfPayasam: E(null, "Payasam sweet Tamil Nadu", "Payasam in a bowl"),
+  hfVada: E(null, "Medu vada sambar", "Medu vada with sambar"),
+  hhButter: E(null, "Krishna's Butter Ball Mahabalipuram", "Krishna's Butter Ball at Mahabalipuram"),
+  hhKanchi: E(null, "Varadharaja Perumal Temple Kanchipuram", "Varadharaja Perumal Temple, Kanchipuram"),
+  hhPalace: E(null, "Saraswathi Mahal Library Thanjavur", "Saraswathi Mahal Library, Thanjavur"),
+  hpKanya: E(null, "Kumari Amman Temple Kanyakumari seashore Tamil Nadu", "Kumari Amman Temple and seashore at Kanyakumari"),
+  hpKanyaMemorial: E(null, "Vivekananda Rock Memorial Kanyakumari Tamil Nadu monument sea", "Vivekananda Rock Memorial off the coast of Kanyakumari"),
+  hpKanyaSunset: E(null, "Kanyakumari sunset Thiruvalluvar statue Arabian Sea", "Sunset at Kanyakumari with the Thiruvalluvar Statue"),
+  hpMadurai: E(null, "Madurai Meenakshi temple golden lotus tank", "Meenakshi Amman Temple tank, Madurai"),
+  hpOoty: E(null, "Ooty tea garden Nilgiris", "Tea garden in Ooty"),
+};
+
+export const commonsUrl = (file, width = 1400) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file.replace(/ /g, "_"))}?width=${width}`;
