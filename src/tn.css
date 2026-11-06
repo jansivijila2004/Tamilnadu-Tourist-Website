@@ -23,9 +23,9 @@ img.tn-img,.img-fallback{display:block;width:100%;height:100%;object-fit:cover}
 .hs-dots{position:absolute;z-index:5;bottom:26px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
 .hs-dots button{width:11px;height:11px;border-radius:99px;border:0;background:rgba(255,255,255,.5);cursor:pointer;padding:0;transition:.3s}.hs-dots button.active{width:34px;background:var(--gold)}
 /* Cards & grids */
-.destination-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.destination-grid.four{grid-template-columns:repeat(4,1fr)}
-.two-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-.photo-card{background:#fff;border-radius:6px;overflow:hidden;height:100%;display:flex;flex-direction:column;box-shadow:0 6px 22px #2a3a2e14;transition:transform .35s,box-shadow .35s}
+.destination-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}.destination-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.two-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.photo-card{width:100%;background:#fff;border-radius:6px;overflow:hidden;height:100%;display:flex;flex-direction:column;box-shadow:0 6px 22px #2a3a2e14;transition:transform .35s,box-shadow .35s}
 .photo-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px #2a3a2e26}
 .photo-card .image-wrap{position:relative;aspect-ratio:4/3;overflow:hidden;background:#e9e1cf}.photo-card .image-wrap .tn-img,.photo-card .image-wrap .img-fallback{transition:transform .7s}.photo-card:hover .image-wrap .tn-img{transform:scale(1.08)}
 .photo-card .card-type{position:absolute;top:14px;left:14px;background:var(--gold);color:#172f23;font-size:10px;font-weight:700;letter-spacing:1px;padding:6px 10px;border-radius:2px}
@@ -60,9 +60,9 @@ img.tn-img,.img-fallback{display:block;width:100%;height:100%;object-fit:cover}
 /* Itineraries */
 .itin-list{max-width:760px;margin:30px auto 0;display:grid;gap:14px}.itin-item{background:#fff;border-left:4px solid var(--gold);padding:18px 22px;border-radius:4px}.itin-item p{margin:6px 0 0;color:#4e5c52;line-height:1.7}
 .section-heading.center{text-align:center;margin-left:auto;margin-right:auto}
-@media(max-width:1050px){.destination-grid.four{grid-template-columns:repeat(2,1fr)}.destination-grid{grid-template-columns:repeat(2,1fr)}.split-section{gap:36px}.hs-copy{padding:0 12% 0 8%}}
+@media(max-width:1050px){.destination-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}.destination-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.split-section{gap:36px}.hs-copy{padding:0 12% 0 8%}}
 @media(max-width:760px){.hero-slider{height:clamp(520px,88vh,640px)}.hs-copy{padding:0 22px;max-width:100%}.hs-arrow{width:38px;height:38px;top:auto;bottom:70px;transform:none}.hs-arrow.left{left:auto;right:74px}.hs-arrow.right{right:22px}.hs-dots{left:22px;transform:none;bottom:34px}
- .destination-grid,.destination-grid.four,.two-grid,.detail-grid,.related-grid{grid-template-columns:1fr}.split-section{grid-template-columns:1fr}.split-section.reverse .split-img{order:0}.page-hero{padding:40px 6%;min-height:380px}.hero-scroll{left:6%}.filter-bar{top:72px;padding:14px 4%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.chip{white-space:nowrap}.form-card{padding:22px}.cta-inner{padding:60px 6%}}
+ .destination-grid,.destination-grid.four,.two-grid,.detail-grid,.related-grid{grid-template-columns:minmax(0,1fr)}.split-section{grid-template-columns:1fr}.split-section.reverse .split-img{order:0}.page-hero{padding:40px 6%;min-height:380px}.hero-scroll{left:6%}.filter-bar{top:72px;padding:14px 4%;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.chip{white-space:nowrap}.form-card{padding:22px}.cta-inner{padding:60px 6%}}
 
 /* Multi-slide page heroes */
 .navbar{position:sticky;top:0;z-index:100}
@@ -93,10 +93,102 @@ img.tn-img,.img-fallback{display:block;width:100%;height:100%;object-fit:cover}
  .page-hero-slider .hs-arrow.left{right:68px}.page-hero-slider .hs-arrow.right{right:18px}
 }
 
+/* Paired-image hover and continuous, pausable image rows */
+.photo-card .image-wrap{isolation:isolate}
+.photo-card .image-wrap>.tn-img:first-child{position:relative;z-index:0}
+.photo-card .image-wrap .photo-alt-img{position:absolute;inset:0;z-index:1;opacity:0;transform:scale(1.02);transition:opacity .55s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.photo-card .image-wrap>.tn-img:first-child{transition:opacity .5s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.photo-card:hover .image-wrap .photo-alt-img,.photo-card:focus-within .image-wrap .photo-alt-img{opacity:1;transform:scale(1.08)}
+.photo-card.has-alt-image:hover .image-wrap>.tn-img:first-child,.photo-card.has-alt-image:focus-within .image-wrap>.tn-img:first-child{opacity:0}
+.photo-card .photo-hover-overlay{z-index:3}
+.photo-card .card-type{z-index:4}
+.split-img{position:relative}
+.split-img.has-hover-image>.tn-img:first-child{transition:opacity .45s ease,transform .75s ease}
+.split-img.has-hover-image .split-alt-img{position:absolute;inset:0;opacity:0;transform:scale(1.02);transition:opacity .45s ease,transform .75s ease}
+.split-img.has-hover-image:hover>.tn-img:first-child,.split-img.has-hover-image:focus-within>.tn-img:first-child{opacity:0}
+.split-img.has-hover-image:hover .split-alt-img,.split-img.has-hover-image:focus-within .split-alt-img{opacity:1;transform:scale(1.06)}
+.split-hover-copy{position:absolute;inset:auto 0 0;z-index:2;display:grid;gap:6px;padding:24px;color:#fff;background:linear-gradient(0deg,rgba(8,28,20,.88),transparent);opacity:0;transition:opacity .35s ease}
+.split-hover-copy strong{font:600 22px var(--serif)}
+.split-hover-copy span{font-size:13px;line-height:1.55}
+.split-img.has-hover-image:hover .split-hover-copy,.split-img.has-hover-image:focus-within .split-hover-copy{opacity:1}
+
+.image-marquee{position:relative;overflow:hidden;width:100%;outline:none}
+.image-marquee-track{display:flex;width:max-content;animation:marquee-left 38s linear infinite;will-change:transform}
+.image-marquee-track.vertical-track{flex-direction:column;width:100%}
+.image-marquee-group{display:flex;flex:0 0 auto;gap:18px;padding-right:18px}
+.image-marquee:hover .image-marquee-track,.image-marquee:focus-within .image-marquee-track{animation-play-state:paused}
+.image-marquee-track.to-right{animation-name:marquee-right}
+.marquee-card{position:relative;display:block;flex:0 0 clamp(230px,27vw,350px);height:250px;overflow:hidden;border-radius:7px;background:#d9e1d7;color:#fff;isolation:isolate}
+.marquee-card>.tn-img,.marquee-card>.img-fallback{position:absolute;inset:0;width:100%;height:100%;transition:transform .75s ease}
+.marquee-card:hover>.tn-img,.marquee-card:focus>.tn-img{transform:scale(1.08)}
+.marquee-caption{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:22px;background:linear-gradient(0deg,rgba(8,28,20,.86),rgba(8,28,20,.05) 80%);opacity:0;transition:opacity .35s ease}
+.marquee-card:hover .marquee-caption,.marquee-card:focus .marquee-caption{opacity:1}
+.marquee-caption strong{font:600 22px/1.2 var(--serif)}
+.marquee-caption small{font-size:11px;color:#f0d28e}
+.marquee-caption>span{font-size:13px;line-height:1.55}
+.home-valley-marquee{margin-top:8px}
+.home-experience-marquee .image-marquee-track{animation-duration:48s}
+.road-trip-cta{width:100%;min-height:clamp(440px,58vw,680px);background:#173729!important}
+.road-trip-cta .cta-img{object-position:center 55%;transform:scale(1.015)}
+.road-trip-cta .cta-shade{background:linear-gradient(90deg,rgba(8,28,20,.78),rgba(8,28,20,.38)),linear-gradient(0deg,rgba(8,28,20,.5),rgba(8,28,20,.12))}
+.road-trip-cta .cta-inner{max-width:900px}
+.nature-marquee .marquee-card{flex-basis:clamp(245px,28vw,360px);height:290px}
+.culture-marquee .marquee-card{height:270px}
+.destination-temple-marquee .marquee-card{height:310px}
+.waterfall-marquee{height:min(68vh,620px);min-height:420px}
+.waterfall-marquee .image-marquee-track{width:100%;animation-name:marquee-down;animation-duration:34s}
+.waterfall-marquee .image-marquee-group{width:100%;flex-direction:column;align-items:center;padding:0 0 18px}
+.waterfall-marquee .marquee-card{flex:0 0 250px;width:min(100%,520px)}
+.waterfall-marquee .marquee-card>.tn-img{object-fit:cover}
+.temple-feature-card .image-wrap::after{content:"";position:absolute;inset:0;z-index:2;background:#d6e5d4;opacity:0;transition:opacity .4s ease;pointer-events:none}
+.temple-feature-card:hover .image-wrap::after{opacity:.22}
+.beach-card .image-wrap{background:#dce7dc}
+.beach-card:hover .image-wrap .tn-img{animation:beach-drift 1.8s ease-in-out infinite alternate}
+
+/* Food rows stay horizontal and let only the hovered card grow. */
+.food-scroll-row{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;padding:12px 8px 26px;scroll-snap-type:x proximity}
+.food-scroll-row>div{flex:0 0 clamp(250px,28vw,350px);scroll-snap-align:start}
+.food-scroll-row>div>.photo-card:hover{z-index:5;transform:scale(1.07);box-shadow:0 18px 38px #2a3a2e30}
+.breakfast-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.geography-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* Shared gentle interaction for the text-led cards on every page. */
+.value-card,.guide-card,.office-card,.faq-item,.related-link,.form-card{transition:transform .35s ease,box-shadow .35s ease,background-color .35s ease}
+.value-card:hover,.guide-card:hover,.office-card:hover,.faq-item:hover,.related-link:hover,.form-card:hover{transform:translateY(-5px);background-color:#f1f3eb;box-shadow:0 16px 34px #2a3a2e20}
+.value-card h3,.guide-card h3,.faq-item button{transition:color .3s ease}
+.value-card:hover h3,.guide-card:hover h3,.faq-item:hover button{color:var(--brown)}
+
+@keyframes marquee-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@keyframes marquee-down{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+@keyframes beach-drift{from{transform:scale(1.06) translateY(-4px)}to{transform:scale(1.11) translateY(4px)}}
+@media(hover:none){
+ .marquee-caption{opacity:1;background:linear-gradient(0deg,rgba(8,28,20,.78),rgba(8,28,20,.04) 86%);padding:16px}
+}
+@media(max-width:760px){
+ .breakfast-grid,.geography-grid{grid-template-columns:1fr}
+ .food-scroll-row>div{flex-basis:min(82vw,340px)}
+ .marquee-card{flex-basis:78vw;height:235px}
+ .road-trip-cta{min-height:480px}
+ .road-trip-cta .cta-img{object-position:58% center}
+ .road-trip-cta .cta-shade{background:linear-gradient(0deg,rgba(8,28,20,.78),rgba(8,28,20,.3))}
+ .nature-marquee .marquee-card{height:250px}
+ .destination-temple-marquee .marquee-card{height:270px}
+ .waterfall-marquee{height:530px;min-height:0}
+ .waterfall-marquee .marquee-card{flex-basis:215px}
+ .image-marquee-group{gap:12px;padding-right:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ .image-marquee-track{animation:none!important}
+ .beach-card:hover .image-wrap .tn-img{animation:none}
+ .photo-card .image-wrap .photo-alt-img,.photo-card .image-wrap>.tn-img:first-child,.split-img.has-hover-image>.tn-img:first-child,.split-img.has-hover-image .split-alt-img{transition:none}
+}
+
 
 /* Image-first cards: keep all copy hidden until hover/focus. */
 .photo-card{display:block;position:relative;border-radius:8px;background:transparent;box-shadow:0 8px 26px #2a3a2e18;min-height:0}
 .photo-card .image-wrap{aspect-ratio:16/10;min-height:220px}
+.destination-grid>*,.two-grid>*,.guide-grid>*,.value-grid>*{min-width:0}
 .photo-card .image-card-body{display:none!important}
 .photo-hover-overlay{opacity:0;pointer-events:none;transition:opacity .35s ease;gap:9px;padding:clamp(18px,3vw,28px)}
 .photo-hover-overlay strong{font-size:clamp(20px,2vw,27px)}
@@ -164,4 +256,24 @@ img.tn-img,.img-fallback{display:block;width:100%;height:100%;object-fit:cover}
     left: 7%;
     width: 86%;
   }
+}
+
+/* Distinct page-hero motion identities */
+.page-hero-slide{position:absolute;inset:0;will-change:transform,opacity,filter}
+.page-hero-img{transform-origin:center center}
+.page-hero-about .page-hero-img{animation:aboutHeroDrift 14s ease-in-out infinite alternate}
+.page-hero-destinations .page-hero-img{animation:destinationHeroPan 18s ease-in-out infinite alternate}
+.page-hero-heritage .page-hero-img{animation:heritageHeroFloat 12s ease-in-out infinite alternate}
+.page-hero-food .page-hero-img{animation:foodHeroPulse 10s ease-in-out infinite alternate}
+.page-hero-travel .page-hero-img{animation:travelHeroZoom 16s ease-in-out infinite alternate}
+.page-hero-contact .page-hero-img{animation:contactHeroDrift 13s ease-in-out infinite alternate}
+@keyframes aboutHeroDrift{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.12) translate3d(-1.2%,1%,0)}}
+@keyframes destinationHeroPan{from{transform:scale(1.08) translate3d(2%,0,0)}to{transform:scale(1.08) translate3d(-2%,0,0)}}
+@keyframes heritageHeroFloat{from{transform:scale(1.04) translate3d(0,1%,0)}to{transform:scale(1.1) translate3d(0,-1%,0)}}
+@keyframes foodHeroPulse{from{transform:scale(1.02) rotate(-.25deg)}to{transform:scale(1.09) rotate(.25deg)}}
+@keyframes travelHeroZoom{from{transform:scale(1.12)}to{transform:scale(1.02)}}
+@keyframes contactHeroDrift{from{transform:scale(1.04) translate3d(-1%,0,0)}to{transform:scale(1.1) translate3d(1%,0,0)}}
+@media (prefers-reduced-motion:reduce){
+  .page-hero-about .page-hero-img,.page-hero-destinations .page-hero-img,.page-hero-heritage .page-hero-img,
+  .page-hero-food .page-hero-img,.page-hero-travel .page-hero-img,.page-hero-contact .page-hero-img{animation:none}
 }

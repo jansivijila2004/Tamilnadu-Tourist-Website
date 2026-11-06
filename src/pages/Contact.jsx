@@ -47,7 +47,7 @@ export default function Contact() {
 
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="03 — TOURISM ENQUIRY" title="What can we help you plan?" />
-        <div className="guide-grid">{[["Itineraries", "Custom routes for 3 to 10 days."], ["Hill stations", "Where to stay and when to go."], ["Heritage tours", "Temple towns and UNESCO sites."]].map(([t, d], i) => <Reveal className="guide-card" delay={i * .08} key={t}><span>0{i + 1}</span><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
+        <div className="guide-grid">{[["Itineraries", "Custom routes for 3 to 10 days."], ["Hill stations", "Where to stay and when to go."], ["Heritage tours", "Temple towns and UNESCO sites."]].map(([t, d], i) => <Reveal className="guide-card" delay={i * .08} key={t}><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
       </section>
 
       <section className="section-pad" id="form">
@@ -80,7 +80,7 @@ export default function Contact() {
         ))}</div>
       </section>
 
-      <Split img="cSupport" eyebrow="07 — TRAVEL SUPPORT" title={<>Help on the road,<br /><em>before and after.</em></>}>
+      <Split img="cSupport" hoverImg="cCta" hoverTitle="Travel support" hoverDesc="Find route, weather and safety guidance before setting out." eyebrow="07 — TRAVEL SUPPORT" title={<>Help on the road,<br /><em>before and after.</em></>}>
         <p>Use the travel guide for transport, weather and safety advice, or send us a message if you need help choosing a route.</p>
         <Link className="under-link" to="/travel-guide"><LifeBuoy size={16} /> Open the travel guide</Link>
       </Split>

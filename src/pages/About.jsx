@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Landmark, Languages, Sparkles, Compass } from "lucide-react";
-import { PageHero, SectionHeading, PhotoCard, Reveal, CTA, Split } from "../components";
+import { ArrowUpRight } from "lucide-react";
+import { PageHero, SectionHeading, PhotoCard, Reveal, CTA, Split, ImageMarquee } from "../components";
 
 export default function About() {
   return (
@@ -11,16 +11,18 @@ export default function About() {
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="02 — HISTORY" title="Over two thousand years of kingdoms" description="The Cheras, Cholas and Pandyas ruled early Tamilakam, followed by the Pallavas, Nayaks and later colonial powers." />
         <div className="two-grid">
-          <PhotoCard img="aGreatLiving" title="Chola Empire" tag="History" desc="The Cholas built great temples such as Brihadisvara at Thanjavur and the Airavatesvara at Darasuram." />
-          <PhotoCard img="aSculpture" title="Pallava Art" tag="History" desc="Pallava kings carved rock-cut temples and reliefs at Mahabalipuram." index={1} />
+          <PhotoCard img="aGreatLiving" title="Chola Empire" tag="History" desc="The Cholas built great temples such as Brihadisvara at Thanjavur and the Airavatesvara at Darasuram." className="image-zoom-card" />
+          <PhotoCard img="aSculpture" title="Pallava Art" tag="History" desc="Pallava kings carved rock-cut temples and reliefs at Mahabalipuram." index={1} className="image-zoom-card" />
         </div>
       </section>
 
       <section className="section-pad">
         <SectionHeading eyebrow="03 — GEOGRAPHY AND REGIONS" title="Coast, plains and hills" />
-        <div className="two-grid">
-          <PhotoCard img="aWesternGhats" title="Western Ghats and Nilgiris" tag="Hills" desc="Cool, misty hills with tea and coffee estates." />
-          <PhotoCard img="aCauvery" title="Cauvery Delta" tag="Plains" desc="Fertile paddy fields, known as the rice bowl of Tamil Nadu." index={1} />
+        <div className="destination-grid geography-grid">
+          <PhotoCard img="aWesternGhats" hoverImg="dValparai" title="Western Ghats and Nilgiris" tag="Hills" desc="Cool, misty hills with tea and coffee estates." />
+          <PhotoCard img="aCauvery" hoverImg="dThanjavur" title="Cauvery Delta" tag="Plains" desc="Fertile paddy fields, known as the rice bowl of Tamil Nadu." index={1} />
+          <PhotoCard img="dMarina" hoverImg="dKanyakumari" title="Tamil Nadu Coast" tag="Coast" desc="Long shores, fishing villages and open sea views." index={2} />
+          <PhotoCard img="dPichavaram" hoverImg="aCauvery" title="Rivers and Mangroves" tag="Coast" desc="Waterways and green wetlands shape the eastern coast." index={3} />
         </div>
       </section>
 
@@ -30,15 +32,26 @@ export default function About() {
 
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="05 — ANCIENT ARCHITECTURE" title="Temples built to touch the sky" description="Dravidian architecture is known for towering gopurams, pillared halls and holy tanks." />
-        <div className="value-grid">{[[Landmark, "Gopurams", "Tiered gateway towers covered with painted sculptures."], [Compass, "Mandapams", "Pillared halls for festivals and gatherings."], [Sparkles, "Vimanas", "Towers above the sanctum."], [Languages, "Inscriptions", "Records of kings, gifts and festivals on stone."]].map(([I, t, d], i) => <Reveal className="value-card" key={t} delay={i * .07}><I /><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
+        <div className="destination-grid four temple-feature-grid">{[
+          ["dMadurai", "Gopurams", "Tiered gateway towers covered with painted sculptures.", "dSrirangam"],
+          ["dKanchipuram", "Mandapams", "Pillared halls for festivals and gatherings.", "dMadurai"],
+          ["dThanjavur", "Vimanas", "Towers above the sanctum.", "dKanchipuram"],
+          ["dSrirangam", "Inscriptions", "Records of kings, gifts and festivals on stone.", "dThanjavur"],
+        ].map(([img, t, d, hoverImg], i) => <PhotoCard key={t} img={img} hoverImg={hoverImg} title={t} tag="Architecture" desc={d} index={i} className="temple-feature-card" />)}</div>
       </section>
 
       <section className="section-pad">
         <SectionHeading eyebrow="06 — CULTURAL TRADITIONS" title="Festivals, music and everyday ritual" />
-        <div className="two-grid">
-          <PhotoCard img="aFestival" title="Temple Festivals" tag="Culture" desc="Processions, chariots and music mark festivals such as Madurai's Chithirai Thiruvizha." />
-          <PhotoCard img="hMusic" title="Nadaswaram and Thavil" tag="Music" desc="Traditional music played at weddings and temple ceremonies." index={1} />
-        </div>
+        <ImageMarquee direction="left" className="culture-marquee" items={[
+          { img: "aFestival", title: "Temple Festivals", place: "Madurai", desc: "Chariots, music and processions at Chithirai Thiruvizha." },
+          { img: "hMusic", title: "Nadaswaram and Thavil", place: "Tamil Nadu", desc: "Traditional music for weddings and temple ceremonies." },
+          { img: "fPongalFest", title: "Pongal", place: "Tamil Nadu", desc: "A joyful celebration of harvest and abundance." },
+          { img: "danOyil", title: "Oyilattam", place: "Madurai–Theni", desc: "Rhythmic folk dance performed in lines and circles." },
+          { img: "danTheru", title: "Therukoothu", place: "Tamil Nadu", desc: "Open-air theatre with dance, song and storytelling." },
+          { img: "fJallikattu", title: "Jallikattu", place: "Madurai region", desc: "A traditional event held around the Pongal season." },
+          { img: "danKavadi", title: "Kavadi Attam", place: "Tamil Nadu", desc: "A devotional dance honouring Lord Murugan." },
+          { img: "danKummi", title: "Kummi", place: "Tamil Nadu", desc: "A circle dance accompanied by clapping and songs." },
+        ]} />
       </section>
 
       <Split img="aTourism" eyebrow="07 — TOURISM IMPORTANCE" title={<>Heritage that welcomes<br /><em>the world.</em></>}>
@@ -47,7 +60,7 @@ export default function About() {
 
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="08 — WHY VISIT" title="Reasons to come" center />
-        <div className="guide-grid">{[["Living heritage", "Temples where worship has continued for centuries."], ["Varied landscapes", "Beaches, hills, forests and waterfalls in one state."], ["Rich food", "From Chettinad spice to filter coffee."]].map(([t, d], i) => <Reveal className="guide-card" key={t} delay={i * .08}><span>0{i + 1}</span><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
+        <div className="guide-grid">{[["Living heritage", "Temples where worship has continued for centuries."], ["Varied landscapes", "Beaches, hills, forests and waterfalls in one state."], ["Rich food", "From Chettinad spice to filter coffee."]].map(([t, d], i) => <Reveal className="guide-card" key={t} delay={i * .08}><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
       </section>
 
       <CTA img="aCta" eyebrow="09 — EXPLORE MORE" title="Start with a place that speaks to you." to="/destinations" label="Explore destinations" />

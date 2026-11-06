@@ -25,18 +25,18 @@ export default function TravelGuide() {
         <p>Chennai has the largest airport. Coimbatore, Madurai, Tiruchirappalli and Tuticorin also have airports, and Bengaluru and Thiruvananthapuram are useful for hill and southern trips.</p>
       </Split>
 
-      <Split reverse img="tTrain" eyebrow="04 — TRAVEL BY TRAIN" title={<>Rail links across<br /><em>the whole state.</em></>}>
+      <Split reverse img="tTrain" hoverImg="heTrain" hoverTitle="Nilgiri Mountain Railway" hoverDesc="Take the heritage train between Mettupalayam and Ooty." eyebrow="04 — TRAVEL BY TRAIN" title={<>Rail links across<br /><em>the whole state.</em></>}>
         <p>Chennai Central and Egmore connect to Madurai, Coimbatore, Tiruchirappalli and Kanyakumari. Book reserved seats early. The Nilgiri Mountain Railway runs between Mettupalayam and Ooty.</p>
       </Split>
 
-      <Split img="tBus" eyebrow="05 — TRAVEL BY BUS" title={<>Frequent buses<br /><em>between towns.</em></>}>
+      <Split img="tBus" hoverImg="tHero3" hoverTitle="Hill-road journeys" hoverDesc="A state bus rounds a mountain road in the Nilgiris." eyebrow="05 — TRAVEL BY BUS" title={<>Frequent buses<br /><em>between towns.</em></>}>
         <p>State transport and private operators run day and overnight buses between all major cities. Tamil Nadu state buses reach most hill towns.</p>
       </Split>
 
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="06 — POPULAR TRAVEL ROUTES" title="Three classic routes" />
-        <div className="guide-grid">{[["Temple trail", "Chennai → Kanchipuram → Thanjavur → Madurai"], ["Hills and tea", "Coimbatore → Ooty → Coonoor → Valparai"], ["Southern coast", "Madurai → Rameswaram → Kanyakumari"]].map(([t, d], i) => <Reveal className="guide-card" delay={i * .08} key={t}><span>0{i + 1}</span><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
-        <div className="guide-img-row"><PhotoCard img="tRoute" title="Pamban Bridge" tag="Route" place="Rameswaram" desc="The sea bridge to Rameswaram is a highlight of the southern coastal route." /></div>
+        <div className="guide-grid">{[["Temple trail", "Chennai → Kanchipuram → Thanjavur → Madurai"], ["Hills and tea", "Coimbatore → Ooty → Coonoor → Valparai"], ["Southern coast", "Madurai → Rameswaram → Kanyakumari"]].map(([t, d], i) => <Reveal className="guide-card" delay={i * .08} key={t}><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
+        <div className="guide-img-row"><PhotoCard img="tRoute" hoverImg="tRouteAlt" title="Pamban Bridge" tag="Route" place="Rameswaram" desc="The sea bridge to Rameswaram is a highlight of the southern coastal route." /></div>
       </section>
 
       <Split reverse img="tStay" eyebrow="07 — ACCOMMODATION GUIDANCE" title={<>From heritage homes<br /><em>to simple lodges.</em></>}>
@@ -46,7 +46,7 @@ export default function TravelGuide() {
       <section className="section-pad">
         <SectionHeading eyebrow="08 — TRAVEL TIPS AND SAFETY" title="Simple tips for a smooth trip" />
         <div className="value-grid">{[["Dress modestly", "Cover shoulders and knees at temples; remove footwear."], ["Carry water", "Stay hydrated, especially from March to June."], ["Book early", "Trains and festival-season hotels fill fast."], ["Keep copies", "Carry ID copies and use official taxis or apps."]].map(([t, d], i) => <Reveal className="value-card" key={t} delay={i * .07}><h3>{t}</h3><p>{d}</p></Reveal>)}</div>
-        <div className="guide-img-row"><PhotoCard img="tSafety" title="Respect sacred spaces" tag="Tip" desc="Follow temple rules on photography and entry." /></div>
+        <div className="guide-img-row"><PhotoCard img="tSafety" hoverImg="dSrirangam" title="Respect sacred spaces" tag="Tip" desc="Follow temple rules on photography and entry." /></div>
       </section>
 
       <section className="section-pad soft-bg">

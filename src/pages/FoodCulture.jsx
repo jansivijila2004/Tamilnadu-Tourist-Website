@@ -2,7 +2,7 @@ import React from "react";
 import { Utensils, Coffee, Leaf } from "lucide-react";
 import { PageHero, SectionHeading, PhotoCard, Reveal, CTA, Split } from "../components";
 
-const G = (arr) => <div className="destination-grid">{arr.map(([img, t, d, tag], i) => <PhotoCard key={img} img={img} title={t} tag={tag} desc={d} index={i} />)}</div>;
+const G = (arr, className = "") => <div className={`destination-grid ${className}`}>{arr.map(([img, t, d, tag, hoverImg], i) => <PhotoCard key={img} img={img} hoverImg={hoverImg} title={t} tag={tag} desc={d} index={i} />)}</div>;
 
 export default function FoodCulture() {
   return (
@@ -11,12 +11,12 @@ export default function FoodCulture() {
 
       <section className="section-pad">
         <SectionHeading eyebrow="01 — THE TIFFIN TABLE" title="Breakfast classics" description="Soft, crisp and comforting — the everyday dishes of Tamil homes." />
-        {G([["fIdli", "Idli and Sambar", "Steamed rice-and-lentil cakes served with lentil sambar and coconut chutney.", "Food"], ["fDosa", "Dosa", "A thin fermented rice-and-lentil crepe, served crisp with chutneys and sambar.", "Food"], ["fPongal", "Pongal", "A savoury dish of rice and moong dal tempered with pepper, cumin and ghee.", "Food"]])}
+        {G([["fIdli", "Idli and Sambar", "Steamed rice-and-lentil cakes served with lentil sambar and coconut chutney.", "Food", "hfPaniyaram"], ["fDosa", "Dosa", "A thin fermented rice-and-lentil crepe, served crisp with chutneys and sambar.", "Food", "hfKothu"], ["fPongal", "Pongal", "A savoury dish of rice and moong dal tempered with pepper, cumin and ghee.", "Food", "hfVada"], ["hfVada", "Medu Vada", "Crisp lentil doughnuts served with sambar and coconut chutney.", "Food", "fIdli"], ["hfPaniyaram", "Kuzhi Paniyaram", "Pan-cooked rice dumplings served with chutney.", "Food", "fDosa"], ["hfKothu", "Kothu Parotta", "Chopped parotta tossed with spices, vegetables and salna.", "Food", "fPongal"]], "breakfast-grid")}
       </section>
 
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="02 — REGIONAL SPECIALITIES" title="From Chettinad to Madurai" description="Spice, tradition and street-side favourites." />
-        {G([["fChettinad", "Chettinad Cuisine", "Bold dishes of the Chettinad region made with freshly ground spices and star anise.", "Chettinad"], ["fJigar", "Madurai Jigarthanda", "A cold Madurai drink of milk, almond gum (badam pisin), sarsaparilla syrup and ice cream.", "Madurai"], ["fParotta", "Parotta and Salna", "Flaky layered flatbread served with a thin spiced gravy.", "Street food"]])}
+        {G([["fChettinad", "Chettinad Cuisine", "Bold dishes of the Chettinad region made with freshly ground spices and star anise.", "Chettinad", "fParotta"], ["fJigar", "Madurai Jigarthanda", "A cold Madurai drink of milk, almond gum (badam pisin), sarsaparilla syrup and ice cream.", "Madurai", "hfPayasam"], ["fParotta", "Parotta and Salna", "Flaky layered flatbread served with a thin spiced gravy.", "Street food", "hfKothu"], ["hfKothu", "Kothu Parotta", "Chopped parotta stir-fried with spices and salna.", "Street food", "fParotta"], ["hfPaniyaram", "Kuzhi Paniyaram", "A crisp-edged rice dumpling popular across the region.", "Madurai", "hfVada"], ["hfVada", "Medu Vada", "A savoury lentil snack served hot with chutney.", "Tamil Nadu", "hfPaniyaram"]], "food-scroll-row")}
       </section>
 
       <Split img="fCoffee" eyebrow="03 — THE DAILY RITUAL" title={<>Tamil Filter Coffee,<br /><em>poured high.</em></>}>
@@ -34,7 +34,7 @@ export default function FoodCulture() {
 
       <section className="section-pad soft-bg">
         <SectionHeading eyebrow="06 — TAMIL TRADITIONAL ARTS" title="Crafts passed down for generations" />
-        {G([["fTanjoreArt", "Tanjore Painting", "Gold-leaf paintings of deities made in Thanjavur.", "Art"], ["fBronze", "Chola Bronzes", "Lost-wax bronze sculptures of Shiva and other deities.", "Art"], ["fKolam", "Kolam", "Daily rice-flour patterns drawn at the doorstep.", "Art"], ["fKanchi", "Kanchipuram Silk", "Handwoven silk sarees with temple-inspired borders.", "Craft"]])}
+        {G([["fTanjoreArt", "Tanjore Painting", "Gold-leaf paintings of deities made in Thanjavur.", "Art", "fTanjoreArtDetail"], ["fBronze", "Chola Bronzes", "Lost-wax bronze sculptures of Shiva and other deities.", "Art", "aboutHero3"], ["fKolam", "Kolam", "Daily rice-flour patterns drawn at the doorstep.", "Art", "fKolamDetail"], ["fKanchi", "Kanchipuram Silk", "Handwoven silk sarees with temple-inspired borders.", "Craft", "fKanchiWeaving"]])}
       </section>
 
       <section className="section-pad">
