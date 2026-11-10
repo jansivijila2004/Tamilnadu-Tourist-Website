@@ -13,7 +13,7 @@ export const SLIDES = [
   { img: "heroKodai", cat: "KODAIKANAL", title: "Escape to the Beauty of Kodaikanal", text: "Enjoy peaceful lakes, green valleys and refreshing mountain views.", to: "/destinations" },
 ];
 
-const DELAY = 2500;
+const DELAY = 2000;
 
 export default function HeroSlider() {
   const reduce = useReducedMotion();
